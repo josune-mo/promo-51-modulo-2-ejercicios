@@ -1,0 +1,11 @@
+.button-click {
+    background-color: greenyellow;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 5px 10px;
+}
+
+.text-2 {
+    display: none;;
+}
