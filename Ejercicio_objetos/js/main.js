@@ -69,3 +69,14 @@ cestaPeras.suma();
 cestaPeras.resta();
 cestaPeras.restart();
 console.log(cestaPeras.actual); 
+
+const job = 'developer';
+let infoUsario = {
+    firstName: "Laura",
+    lastName: "Fernández",
+    age: "25",
+    job:`${job}`,
+    
+}
+console.log(infoUsario);
+
