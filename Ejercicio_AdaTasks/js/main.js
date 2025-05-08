@@ -20,10 +20,34 @@ const tasks = [
 function paintTask() {
   taskList.innerHTML = "";
   for (const task of tasks) {
-    const li = document.createElement("li"); 
-    li.textContent = task.name;
-    taskList.appendChild(li);
+    /* taskList.innerHTML += `<li><input type="checkbox" id=${task.id} name="task"> ${task.name}</li>`; */
+    if (task.completed === true){
+      taskList.innerHTML += `<li class= "tachado"><input type="checkbox" id=${task.id} name="task"> ${task.name}</li>`;
+  } else {
+      taskList.innerHTML += `<li"><input type="checkbox" id=${task.id} name="task"> ${task.name}</li>`;
   }
+  
+}
+}
+paintTask();
+
+function handleClickFind(){
+  const valorBuscar = inputBuscador.value;
+  
 }
 
-paintTask();
+botonBuscar.addEventListener("click", handleClickFind)
+
+
+  
+
+
+
+
+
+
+
+
+
+
+ 

@@ -1,6 +1,4 @@
-.tachado {
-    text-decoration: line-through;
-}
+
 
 *{
     margin: 0;
@@ -149,6 +147,7 @@ margin: auto;
     
     margin-top: 20px;
     padding-left:20px;
+    list-style: none;
     
 }
 .ul li{
@@ -166,4 +165,8 @@ margin: auto;
     text-align: left;
     padding: 10px;
     padding-left: 20px;
+}
+
+.tachado {
+    text-decoration: line-through;
 }
