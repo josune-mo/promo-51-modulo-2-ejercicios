@@ -6,64 +6,53 @@ const botonAgregar = document.querySelector(".js-btn-1");
 const inputBuscador = document.querySelector(".js-input-2");
 const botonBuscar = document.querySelector(".js-btn-2");
 
-const tasks = [
-  { name: "Recoger setas en el campo", completed: true, id: 1 },
-  { name: "Comprar pilas", completed: true, id: 2 },
-  { name: "Poner una lavadora de blancos", completed: true, id: 3 },
-  {
-    name: "Aprender cómo se realizan las peticiones al servidor en JavaScript",
-    completed: false,
-    id: 4,
-  },
-];
+const GITHUB_USER = "josune-mo";
+const SERVER_URL = `https://dev.adalab.es/api/todo/${GITHUB_USER}`;
+let tasks = [];
 
-function paintTask() {
+function getData() {
+  fetch(SERVER_URL)
+    .then(response => response.json())
+    .then(data => {
+      console.log(data);
+      tasks = data.results;
+      paintTask(tasks);
+    })
+    .catch(error => taskList.innerHTML = `<li>${error}</li>`);
+  }
+
+getData();
+
+function paintTask(tasks) {
   taskList.innerHTML = "";
   for (const task of tasks) {
-    /* taskList.innerHTML += `<li><input type="checkbox" id=${task.id} name="task"> ${task.name}</li>`; */
-    if (task.completed === true){
+    if (task.completed === true) {
       taskList.innerHTML += `<li class= "tachado"><input type="checkbox" id=${task.id} name="task" checked> ${task.name}</li>`;
-  } else {
+    } else {
       taskList.innerHTML += `<li"><input type="checkbox" id=${task.id} name="task"> ${task.name}</li>`;
+    }
   }
-  
 }
-}
-paintTask();
+paintTask(tasks);
 
 const handleClickList = (event) => {
-  const taskId = parseInt(event.target.id); // Obtengo el id del checkbox clickado por la usuaria
-  if (!taskId) return; // Si no ha pulsado en el checkbox, no queremos hacer nada y salimos de la función
-  // Busca la tarea que tenga el id `taskId` en el array `tasks`
+  const taskId = parseInt(event.target.id);
+  if (!taskId) return;
   const task = tasks.find((task) => task.id === taskId);
   if (task) {
-    // Cambia el estado de la propiedad `completed`
     task.completed = !task.completed;
   }
-  // Pinta de nuevo las tareas en el HTML
-  paintTask();
+  paintTask(tasks);
 };
-// Añade el evento al contenedor de la lista
 taskList.addEventListener("click", handleClickList);
 
-function handleClickFind(){
+function handleClickFind(event) {
+  event.preventDefault();
   const valorBuscar = inputBuscador.value;
-
-  
+  const listTasks = tasks.filter((task) => task.name.includes(valorBuscar));
+  console.log(listTasks);
+  const taskFind = tasks.find((task) => task.name.includes(valorBuscar));
+  paintTask(listTasks);
 }
 
-botonBuscar.addEventListener("click", handleClickFind)
-
-
-  
-
-
-
-
-
-
-
-
-
-
- 
+botonBuscar.addEventListener("click", handleClickFind);
