@@ -1,0 +1,28 @@
+body.fondo-amarillo {
+  background-color: #ffcc00;
+}
+
+body.fondo-naranja {
+  background-color: #ff9900;
+}
+.main {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh; /* alto de la pantalla completa */
+}
+
+.form {
+  text-align: center;
+  flex-direction: column;
+}
+.js-estado {
+  width: 150px; 
+}
+
+.js-img {
+  width: 150px; 
+  ;
+  
+  
+}

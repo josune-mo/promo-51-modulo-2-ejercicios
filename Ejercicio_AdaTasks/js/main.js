@@ -22,7 +22,7 @@ function paintTask() {
   for (const task of tasks) {
     /* taskList.innerHTML += `<li><input type="checkbox" id=${task.id} name="task"> ${task.name}</li>`; */
     if (task.completed === true){
-      taskList.innerHTML += `<li class= "tachado"><input type="checkbox" id=${task.id} name="task"> ${task.name}</li>`;
+      taskList.innerHTML += `<li class= "tachado"><input type="checkbox" id=${task.id} name="task" checked> ${task.name}</li>`;
   } else {
       taskList.innerHTML += `<li"><input type="checkbox" id=${task.id} name="task"> ${task.name}</li>`;
   }
@@ -31,8 +31,24 @@ function paintTask() {
 }
 paintTask();
 
+const handleClickList = (event) => {
+  const taskId = parseInt(event.target.id); // Obtengo el id del checkbox clickado por la usuaria
+  if (!taskId) return; // Si no ha pulsado en el checkbox, no queremos hacer nada y salimos de la función
+  // Busca la tarea que tenga el id `taskId` en el array `tasks`
+  const task = tasks.find((task) => task.id === taskId);
+  if (task) {
+    // Cambia el estado de la propiedad `completed`
+    task.completed = !task.completed;
+  }
+  // Pinta de nuevo las tareas en el HTML
+  paintTask();
+};
+// Añade el evento al contenedor de la lista
+taskList.addEventListener("click", handleClickList);
+
 function handleClickFind(){
   const valorBuscar = inputBuscador.value;
+
   
 }
 
